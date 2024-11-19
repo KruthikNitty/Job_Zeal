@@ -1,0 +1,47 @@
+Entities and Relationships:
+1.	User:
+  o	name: String
+  o	email: String
+  o	phone: Number
+  o	password: String
+  o	role: Enum ("Job Seeker", "Employer")
+  o	createdAt: Date
+2.	Job:
+  o	title: String
+  o	description: String
+  o	category: String
+  o	country: String
+  o	city: String
+  o	location: String
+  o	fixedSalary: Number
+  o	salaryFrom: Number
+  o	salaryTo: Number
+  o	expired: Boolean
+  o	jobPostedOn: Date
+  o	postedBy: User (Reference)
+3.	Application:
+  o	name: String
+  o	email: String
+  o	coverLetter: String
+  o	phone: Number
+  o	resume: Object
+  	public_id: String
+  	url: String
+  o	applicantID: Object
+  	user: User (Reference)
+  	role: Enum ("Job Seeker")
+  o	employerID: Object
+  	user: User (Reference)
+  	role: Enum ("Employer")
+  o	status: String
+
+Relationships:
+•	A User can post many Jobs (One-to-Many).
+•	A User can have many Applications as an applicant (One-to-Many).
+•	A User can have many Applications as an employer (One-to-Many).
+•	A Job is posted by a single User (Many-to-One).
+•	An Application is associated with a single Job and two Users (One as the applicant and one as the employer).
+•	The User entity has a one-to-many relationship with the Job entity through the postedBy field.
+•	The User entity has a one-to-many relationship with the Application entity through both applicantID and employerID.
+•	The Job entity does not directly link to the Application entity in this diagram, but it's implicit that applications are related to jobs through their respective users.
+
